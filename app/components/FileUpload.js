@@ -10,7 +10,7 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { styled } from '@mui/material/styles';
 
 export default function FileUpload({ type }) {
-  const { file, setFile, assistant } = useContext(AppContext);
+  const { file, setFile, assistant, uploaded, setUploaded } = useContext(AppContext);
   const [newUpload, setNewUpload] = useState(true);
   const [{ data, error, fetching }, create] = useAction(api.document.create);
 
@@ -50,6 +50,7 @@ export default function FileUpload({ type }) {
         },
       });
       setFile((prevFile) => ({ ...prevFile, uploaded: { ...prevFile.uploaded, [type]: true } }));
+      setUploaded((prevUploaded) => ({ ...prevUploaded, [type]: true }));
     } catch (error) {
       console.log(error);
     }
@@ -69,7 +70,7 @@ export default function FileUpload({ type }) {
 
   return (
     <Card sx={{ padding: 3, backgroundColor: '#FCFCFC', flexGrow: 0 }}>
-      <div className='flex flex-col gap-2 mb-4 items-center'>
+      <div className='flex flex-col gap-2 mb-4 p-4 items-center'>
         <p>Upload a {type} file</p>
 
         {/* Upload button */}
@@ -135,7 +136,7 @@ export default function FileUpload({ type }) {
 
         {/* Uploaded file name - only show after uploading */}
         {data && !fetching && newUpload === false && (
-          <p className='my-2'>Uploaded: {file[type].name}</p>
+          <p className='my-2 p-4'>Uploaded: {file[type].name}</p>
         )}
       </div>
     </Card>
