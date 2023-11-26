@@ -74,7 +74,7 @@ export default function Thread() {
         if (newThread?.messages?.body?.data) {
           const newMessages = newThread.messages.body.data.map((item) => ({
             role: item.role,
-            content: item.content[0].text.value.replace(/【\d+†source】/g, '', // .replace will remove citations if they exist
+            content: item.content[0].text.value.replace(/【\d+†source】/g, ''), // .replace will remove citations if they exist
           }));
           console.log('New messages found:');
           console.log(newMessages);
