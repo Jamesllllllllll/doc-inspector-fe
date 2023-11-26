@@ -4,6 +4,7 @@ import CreateAssistant from './components/CreateAssistant';
 import FileUpload from './components/FileUpload';
 import Thread from './components/Thread';
 import PDFdownload from './components/PDFdownload';
+import StartOver from './components/StartOver';
 import { Paper } from '@mui/material';
 import { AppContext } from './contexts/appDetails';
 import { useContext } from 'react';
@@ -19,7 +20,9 @@ export default function App() {
           {assistant.assistant && thread.thread && (
             <div classname='p-10'>
               {!uploaded.pdf && <FileUpload type='pdf' key='pdf' />}
-              {uploaded.pdf && !uploaded.md && <FileUpload type='md' key='md' />}
+              {uploaded.pdf && !uploaded.md && (
+                <FileUpload type='md' key='md' />
+              )}
             </div>
           )}
           {uploaded.md && <Thread />}
@@ -32,6 +35,7 @@ export default function App() {
           </Paper>
         </div>
       )}
+      {assistant.assistant && <StartOver />}
     </>
   );
 }
