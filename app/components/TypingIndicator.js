@@ -7,9 +7,11 @@ export default function TypingIndicator({status}) {
         <span></span>
         <span></span>
         <span></span>
-        {status === 'in_progress' && (<p>Thinking...</p>)}
+        {(status === 'completed' || status === '') && (<p>Thinking...</p>)}
+        {/* Above is state from previous run */}
+        {status === 'in_progress' && (<p>Replying...</p>)}
         {status === 'requires_action' && (<p>Modifying document...</p>)}
-        {status === 'completed' && (<p>Done!</p>)}
+        
       </div>
     </div>
   );

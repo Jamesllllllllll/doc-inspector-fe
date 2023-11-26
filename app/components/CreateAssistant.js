@@ -75,8 +75,8 @@ export default function CreateAssistant() {
   };
 
   return (
-    <div className='grid sm:grid-rows-2 gap-4'>
-      <div className='flex flex-row gap-4 justify-between items-center'>
+    <>
+      <div className='flex flex-col justify-center'>
         {!assistant.assistant ? (
           loading.assistant ? (
             <LoadingButton
@@ -118,6 +118,6 @@ export default function CreateAssistant() {
           )}
         </div>
       )}
-    </div>
+    </>
   );
 }

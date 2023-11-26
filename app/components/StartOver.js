@@ -21,5 +21,5 @@ export default function StartOver() {
     setUploaded({ pdf: false, md: false });
   };
 
-  return <Button onClick={handleStartOver} className='fixed top-0 right-0 m-4'>Start Over</Button>;
+  return <Button onClick={handleStartOver} variant='outlined' className='fixed top-0 right-0 m-4 bg-white hover:bg-blue-50'>Start Over</Button>;
 }
