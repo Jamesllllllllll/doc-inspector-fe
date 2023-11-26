@@ -18,13 +18,12 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background-image: url('/doc-inspector-bg.png');
+  background-image: url('/background.png');
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
   min-height: 100vh;
-  backdrop-filter: opacity(20%);
-  /* color: rgb(var(--foreground-rgb));
+    /* color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to top,
       transparent,
@@ -33,4 +32,16 @@ body {
     rgb(var(--background-start-rgb));
   background-attachment: fixed; */
   min-height: 100vh;
+}
+
+html::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  background-repeat: repeat;
+  opacity: 0.8;
+  z-index: -1;
 }
