@@ -84,26 +84,25 @@ const PDFdownload = () => {
 
   return (
     <>
+      <div>
+        Download your generated document:
+        <PDFDownloadLink
+          document={<MyDocument />}
+          fileName={`DocInspector_${filename}.pdf`}
+          className='self-end'
+        >
+          {({ blob, url, loading, error }) =>
+            loading ? (
+              'Loading document...'
+            ) : (
+              <Button variant='outlined' startIcon={<CloudDownloadIcon />}>
+                Download PDF
+              </Button>
+            )
+          }
+        </PDFDownloadLink>
+      </div>
       <MyDocument />
-
-      <PDFDownloadLink
-        document={<MyDocument />}
-        fileName={`DocInspector_${filename}.pdf`}
-        className="self-end"
-      >
-        {({ blob, url, loading, error }) =>
-          loading ? (
-            'Loading document...'
-          ) : (
-            <Button
-              variant="outlined"
-              startIcon={<CloudDownloadIcon />}
-            >
-              Download PDF
-            </Button>
-          )
-        }
-      </PDFDownloadLink>
     </>
   );
 };

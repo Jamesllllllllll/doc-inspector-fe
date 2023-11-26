@@ -34,7 +34,7 @@ export default function RootLayout({ children }) {
         content='Query documents & generate templated reports'
       />
       <title>Doc Inspector</title>
-      <body className={inter.className}>
+      <body className={`flex flex-col items-center ${inter.className}`}>
         <ContextProvider>
           <Provider api={api}>{children}</Provider>
         </ContextProvider>
