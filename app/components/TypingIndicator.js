@@ -11,7 +11,6 @@ export default function TypingIndicator({status}) {
         {/* Above is state from previous run */}
         {status === 'in_progress' && (<p>Replying...</p>)}
         {status === 'requires_action' && (<p>Modifying document...</p>)}
-        
       </div>
     </div>
   );

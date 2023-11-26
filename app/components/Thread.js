@@ -6,7 +6,7 @@ import Message from './Message';
 import { Button } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 import TypingIndicator from './TypingIndicator';
-import {motion} from 'framer-motion';
+import { motion } from 'framer-motion';
 
 export default function Thread() {
   const { assistant, file, thread, setHideTutorial } = useContext(AppContext);
@@ -22,7 +22,6 @@ export default function Thread() {
   const inputRef = useRef();
 
   const handleInputChange = (e) => setInput(e.target.value);
-
 
   const [{ messageData }, addMessage] = useFetch(
     `/messages/${thread?.thread?.id}`,
@@ -53,15 +52,28 @@ export default function Thread() {
     }
   );
 
+  const [{ cancelRunData }, cancelRun] = useFetch(
+    `/openAiRuns?runId=${runExternalId}&threadId=${thread?.thread?.id}`,
+    {
+      headers: { 'Content-Type': 'application/json' },
+      method: 'GET',
+      json: true,
+    }
+  );
+
   const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
   const checkRunStatus = async () => {
     let updatedStatus = await getRunStatus();
     let attempts = 0;
-    while (updatedStatus?.runStatus !== 'completed'  && updatedStatus?.runStatus !== 'failed' && attempts < 100) {
+    while (
+      updatedStatus?.runStatus !== 'completed' &&
+      updatedStatus?.runStatus !== 'failed' &&
+      attempts < 100
+    ) {
       console.log('Checking run status...');
       console.log(updatedStatus);
-      setRunStatus(updatedStatus?.runStatus)
+      setRunStatus(updatedStatus?.runStatus);
       await delay(2000);
       updatedStatus = await getRunStatus();
       attempts++;
@@ -91,7 +103,7 @@ export default function Thread() {
       );
     }
     setWaiting(false);
-    setRunStatus(updatedStatus?.runStatus)
+    setRunStatus(updatedStatus?.runStatus);
     inputRef.current.focus();
   };
 
@@ -107,6 +119,12 @@ export default function Thread() {
       inputRef.current.focus();
     }
   }, [waiting]);
+
+  useEffect(() => {
+    if (runStatus === 'failed') {
+      cancelRun();
+    }
+  }, [runStatus]);
 
   const handleSubmit = async (e) => {
     if (!input) return;
@@ -130,10 +148,18 @@ export default function Thread() {
   return (
     <>
       <motion.div
-       className={`flex flex-col-reverse overflow-scroll ${messages.length !== 0 ? 'h-96' : 'h-48'} sm:w-[80%] md:w-[75%] sm:w-full whitespace-pre-wrap bg-gray-100 rounded-lg p-4 border border-gray-300 w-full`}
-       layout
-       >
+        className={`flex flex-col-reverse overflow-scroll ${
+          messages.length !== 0 ? 'h-96' : 'h-48'
+        } sm:w-[80%] md:w-[75%] sm:w-full whitespace-pre-wrap bg-gray-100 rounded-lg p-4 border border-gray-300 w-full`}
+        layout
+      >
         {waiting && <TypingIndicator status={runStatus} />}
+        {runStatus === 'failed' && (
+          <Message
+            role='system'
+            content={`Sorry, I couldn't understand your question. Please try again.`}
+          />
+        )}
         {assistant && file.pdf && file.md && thread ? (
           messages.map((msg, index) => (
             <Message key={index} role={msg.role} content={msg.content} />
