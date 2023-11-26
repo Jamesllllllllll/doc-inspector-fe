@@ -6,6 +6,8 @@ export default function Message({ role, content }) {
   const color = role === 'user' ? 'white' : 'black';
   const align = role === 'user' ? 'right' : 'left';
   const justify = role === 'user' ? 'flex-end' : 'flex-start';
+  const leftRadius = role === 'user' ? '2rem' : 0;
+  const rightRadius = role === 'user' ? 0 : '2rem';
   return (
     <Box sx={{ py: 1, display: 'grid' }}>
       <Typography
@@ -20,7 +22,8 @@ export default function Message({ role, content }) {
           borderRadius: '2rem',
           paddingInline: '20px',
           paddingBlock: '10px',
-          fontWeight: 600,
+          borderBottomLeftRadius: leftRadius,
+          borderBottomRightRadius: rightRadius,
         }}
       >
         {content}

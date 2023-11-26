@@ -84,8 +84,8 @@ const PDFdownload = () => {
 
   return (
     <>
-      <div>
-        Download your generated document:
+      <div className='flex flex-row justify-end items-center gap-4'>
+        <p className='text-gray-500'>Download your generated document:</p>
         <PDFDownloadLink
           document={<MyDocument />}
           fileName={`DocInspector_${filename}.pdf`}
