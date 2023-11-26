@@ -48,10 +48,11 @@ const ContextProvider = (props) => {
   const [assistant, setAssistant] = useState({});
   const [thread, setThread] = useState({});
   const [uploaded, setUploaded] = useState({ pdf: false, md: false });
+  const [hideTutorial, setHideTutorial] = useState(false);
 
   const value = useMemo(
-    () => ({ file, setFile, assistant, setAssistant, thread, setThread, uploaded, setUploaded }),
-    [file, assistant, thread, uploaded]
+    () => ({ file, setFile, assistant, setAssistant, thread, setThread, uploaded, setUploaded, hideTutorial, setHideTutorial }),
+    [file, assistant, thread, uploaded, hideTutorial]
   );
 
   return (

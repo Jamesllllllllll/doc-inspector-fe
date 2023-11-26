@@ -1,15 +1,16 @@
 'use client';
 import { useState, useContext, useEffect } from 'react';
 import { useFetch } from '@gadgetinc/react';
-import { Button } from '@mui/material';
+import { Button, Alert } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 import SaveIcon from '@mui/icons-material/Save';
 import { AppContext } from '../contexts/appDetails';
-
+import getRandomName from './randomName';
 export default function CreateAssistant() {
   const { assistant, setAssistant, thread, setThread, file } =
     useContext(AppContext);
   const [loading, setLoading] = useState({ assistant: false, thread: false });
+  const [name, setName] = useState(getRandomName);
   const [instructions, setInstructions] = useState(
     `"You are a helpful, friendly assistant.  With the document provided ${
       `with the filename ${file.pdf}` || ''
@@ -93,7 +94,7 @@ export default function CreateAssistant() {
             </Button>
           )
         ) : (
-          <p>{`Assistant ${assistant.assistant.id} created.`}</p>
+          <Alert severity="info">{`Your assistant ${name} has arrived!`}</Alert>
         )}
       </div>
       {assistant.assistant && (

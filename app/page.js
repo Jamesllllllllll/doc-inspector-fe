@@ -7,24 +7,16 @@ import PDFdownload from './components/PDFdownload';
 import StartOver from './components/StartOver';
 import { Paper } from '@mui/material';
 import { AppContext } from './contexts/appDetails';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 
 export default function App() {
-  const { file, assistant, thread, uploaded } = useContext(AppContext);
+  const { file, assistant, thread, uploaded, hideTutorial } = useContext(AppContext);
+
   return (
     <>
       <div className='flex flex-row justify-center gap-4'>
-        <div className='flex flex-col stretch items-center w-[80%] min-h-screen py-24 gap-4'>
-          <Tutorial />
-          {!thread.thread && <CreateAssistant />}
-          {assistant.assistant && thread.thread && (
-            <div classname='p-10'>
-              {!uploaded.pdf && <FileUpload type='pdf' key='pdf' />}
-              {uploaded.pdf && !uploaded.md && (
-                <FileUpload type='md' key='md' />
-              )}
-            </div>
-          )}
+        <div className='flex flex-col items-center mx-2 sm:w-[80%] py-24 gap-12'>
+          {!hideTutorial && <Tutorial />}
           {uploaded.md && <Thread />}
         </div>
       </div>
@@ -36,6 +28,7 @@ export default function App() {
         </div>
       )}
       {assistant.assistant && <StartOver />}
+      <div className='fixed top-0 left-0 m-4 bg-white text-xl'>Doc Inspector</div>
     </>
   );
 }

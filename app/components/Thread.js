@@ -6,9 +6,10 @@ import Message from './Message';
 import { Button } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 import TypingIndicator from './TypingIndicator';
+import {motion} from 'framer-motion';
 
 export default function Thread() {
-  const { assistant, file, thread } = useContext(AppContext);
+  const { assistant, file, thread, setHideTutorial } = useContext(AppContext);
   const mockMessages = [
     { role: 'user', content: 'Hello from the user' },
     { role: 'assistant', content: 'Hello from the assistant' },
@@ -21,6 +22,7 @@ export default function Thread() {
   const inputRef = useRef();
 
   const handleInputChange = (e) => setInput(e.target.value);
+
 
   const [{ messageData }, addMessage] = useFetch(
     `/messages/${thread?.thread?.id}`,
@@ -109,6 +111,7 @@ export default function Thread() {
   const handleSubmit = async (e) => {
     if (!input) return;
     e.preventDefault();
+    setHideTutorial(true);
     const newMessage = input;
     setInput('');
     setWaiting(true);
@@ -126,7 +129,10 @@ export default function Thread() {
 
   return (
     <>
-      <div className='flex flex-col-reverse overflow-scroll h-96 whitespace-pre-wrap bg-gray-100 rounded-lg p-4 border border-gray-300 w-full'>
+      <motion.div
+       className={`flex flex-col-reverse overflow-scroll ${messages.length !== 0 ? 'h-96' : 'h-48'} sm:w-[80%] md:w-[75%] sm:w-full whitespace-pre-wrap bg-gray-100 rounded-lg p-4 border border-gray-300 w-full`}
+       layout
+       >
         {waiting && <TypingIndicator status={runStatus} />}
         {assistant && file.pdf && file.md && thread ? (
           messages.map((msg, index) => (
@@ -143,7 +149,7 @@ export default function Thread() {
         ) : (
           ''
         )}
-      </div>
+      </motion.div>
       <form
         role='form'
         onSubmit={handleSubmit}

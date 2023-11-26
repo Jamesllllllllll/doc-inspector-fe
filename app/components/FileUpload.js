@@ -10,7 +10,8 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { styled } from '@mui/material/styles';
 
 export default function FileUpload({ type }) {
-  const { file, setFile, assistant, uploaded, setUploaded } = useContext(AppContext);
+  const { file, setFile, assistant, uploaded, setUploaded } =
+    useContext(AppContext);
   const [newUpload, setNewUpload] = useState(true);
   const [{ data, error, fetching }, create] = useAction(api.document.create);
 
@@ -49,7 +50,10 @@ export default function FileUpload({ type }) {
           _link: assistant.assistant.id,
         },
       });
-      setFile((prevFile) => ({ ...prevFile, uploaded: { ...prevFile.uploaded, [type]: true } }));
+      setFile((prevFile) => ({
+        ...prevFile,
+        uploaded: { ...prevFile.uploaded, [type]: true },
+      }));
       setUploaded((prevUploaded) => ({ ...prevUploaded, [type]: true }));
     } catch (error) {
       console.log(error);
