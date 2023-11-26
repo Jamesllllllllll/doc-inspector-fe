@@ -16,7 +16,7 @@ export default function StartOver() {
       uploaded: {
         pdf: false,
         md: false,
-      }
+      },
     });
     setUploaded({ pdf: false, md: false });
   };
@@ -31,10 +31,19 @@ export default function StartOver() {
       uploaded: {
         pdf: false,
         md: false,
-      }
+      },
     });
     setUploaded({ pdf: false, md: false });
   };
 
-  return <Button onClick={handleStartOver} variant='outlined' className='fixed top-0 right-0 m-4 bg-white hover:bg-blue-50'>Start Over</Button>;
+  return (
+    <Button
+      onClick={handleStartOver}
+      variant='outlined'
+      className='bg-white hover:bg-blue-50'
+      sx={{ backgroundColor: '#fff', zIndex: 2 }}
+    >
+      Start Over
+    </Button>
+  );
 }

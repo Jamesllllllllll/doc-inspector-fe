@@ -10,11 +10,16 @@ import { AppContext } from './contexts/appDetails';
 import { useContext, useEffect } from 'react';
 
 export default function App() {
-  const { file, assistant, thread, uploaded, hideTutorial } = useContext(AppContext);
+  const { file, assistant, thread, uploaded, hideTutorial } =
+    useContext(AppContext);
 
   return (
     <>
-    {assistant.assistant && <StartOver />}
+      <div class='blurry-filter'>
+        <div>Doc Inspector</div>
+        {assistant.assistant && <StartOver />}
+      </div>
+
       <div className='flex flex-row justify-center gap-4'>
         <div className='flex flex-col items-center mx-2 sm:w-[80%] py-24 gap-12'>
           {!hideTutorial && <Tutorial />}
@@ -28,8 +33,6 @@ export default function App() {
           </Paper>
         </div>
       )}
-      
-      <div className='fixed top-0 left-0 m-4 bg-transparent drop-shadow-xl text-xl'>Doc Inspector</div>
     </>
   );
 }
