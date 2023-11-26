@@ -28,7 +28,7 @@ export default function App() {
         </div>
       )}
       {assistant.assistant && <StartOver />}
-      <div className='fixed top-0 left-0 m-4 bg-white text-xl'>Doc Inspector</div>
+      <div className='fixed top-0 left-0 m-4 bg-transparent drop-shadow-xl text-xl'>Doc Inspector</div>
     </>
   );
 }
