@@ -54,7 +54,7 @@ export default function Thread() {
   const checkRunStatus = async () => {
     let updatedStatus = await getRunStatus();
     let attempts = 0;
-    while (updatedStatus?.runStatus !== 'completed' && attempts < 100) {
+    while (updatedStatus?.runStatus !== 'completed'  && updatedStatus?.runStatus !== 'failed' && attempts < 100) {
       console.log('Checking run status...');
       console.log(updatedStatus);
       updatedStatus = await getRunStatus();
