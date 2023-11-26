@@ -8,11 +8,11 @@ import './Template.css';
 
 export default function Template() {
 
-  const { file } = useContext(AppContext);
+  const { file, uploaded } = useContext(AppContext);
 
   return (
     <>
-      {file.template && (
+      {uploaded.md && (
         <>
           <p>Template</p>
           <Paper sx={{ px: 4, py: 2 }}>

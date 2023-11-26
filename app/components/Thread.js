@@ -17,7 +17,7 @@ export default function Thread() {
   const [runExternalId, setRunExternalId] = useState('');
   const [waiting, setWaiting] = useState(false);
   const [input, setInput] = useState('');
-  1;
+  const [runStatus, setRunStatus] = useState('');
   const inputRef = useRef();
 
   const handleInputChange = (e) => setInput(e.target.value);
@@ -51,12 +51,16 @@ export default function Thread() {
     }
   );
 
+  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
   const checkRunStatus = async () => {
     let updatedStatus = await getRunStatus();
     let attempts = 0;
     while (updatedStatus?.runStatus !== 'completed'  && updatedStatus?.runStatus !== 'failed' && attempts < 100) {
       console.log('Checking run status...');
       console.log(updatedStatus);
+      setRunStatus(updatedStatus?.runStatus)
+      await delay(2000);
       updatedStatus = await getRunStatus();
       attempts++;
     }
@@ -85,6 +89,7 @@ export default function Thread() {
       );
     }
     setWaiting(false);
+    setRunStatus(updatedStatus?.runStatus)
     inputRef.current.focus();
   };
 
@@ -122,7 +127,7 @@ export default function Thread() {
   return (
     <>
       <div className='flex flex-col-reverse overflow-scroll h-96 whitespace-pre-wrap bg-gray-100 rounded-lg p-4 border border-gray-300 w-full'>
-        {waiting && <TypingIndicator />}
+        {waiting && <TypingIndicator status={runStatus} />}
         {assistant && file.pdf && file.md && thread ? (
           messages.map((msg, index) => (
             <Message key={index} role={msg.role} content={msg.content} />
