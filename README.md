@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Doc Inspector - AI Assistant Report Generator
 
-## Getting Started
+## Project Overview
 
-After adding your respective tokens to `.env.local`, then run the development server:
+This web app is designed to help the user extract information from a document and generate reports based on the source material. It allows users to upload a PDF, engage in AI-powered discussions about its content, and use these insights to create a new document. The new document's format is determined by a markdown file for a custom output.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Key Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Document Upload and Processing
+- Upload PDFs on various topics like software features or legal briefings.
+- Store these documents efficiently for AI processing.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### AI-Powered Interaction
+- Interact with an AI assistant, powered by OpenAI's API, to get answers based on the document.
+- Engage in a chat with the app using the uploaded data.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Custom Document Generation
+- Upload a markdown file to set the structure and style of the new document.
+- Generate a PDF based on this user-defined format.
 
-## Learn More
+### User Experience Design
+- A guided UX from querying information to creatively assembling a new document.
 
-To learn more about Next.js, take a look at the following resources:
+## Technical Specifications
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Postgres database:** Gadget.dev back-end automated DB creation, hosting, migration, and scaling.
+- **NodeJS:** Extend backend with JavaScript functions, local or web editing.
+- **APIs:** Gadget's GraphQL API and NPM package for CRUD, custom endpoints.
+- **File Storage:** Gadget's secure CDN for image/media file storage with upload limits.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Considerations
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Maintain information accuracy in AI responses to prevent misinformation.
+- Balance UX between querying information and creative document assembly.
+- Adapt to AI technologies' capabilities and limitations (Langchain, OpenAI API).
