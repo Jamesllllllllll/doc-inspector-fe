@@ -7,6 +7,7 @@ import { Button, Card } from '@mui/material';
 import SaveIcon from '@mui/icons-material/Save';
 import LoadingButton from '@mui/lab/LoadingButton';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { styled } from '@mui/material/styles';
 
 export default function FileUpload({ type }) {
@@ -74,43 +75,43 @@ export default function FileUpload({ type }) {
 
   return (
     <Card sx={{ padding: 3, backgroundColor: '#FCFCFC', flexGrow: 0 }}>
-      <div className='flex flex-col gap-2 mb-4 p-4 items-center'>
-        <p>Upload a {type} file</p>
+      <div className='flex flex-col gap-4 mb-4 p-4 items-center'>
+        <p>Upload a {type === 'pdf' ? 'PDF' : 'Markdown'} file</p>
 
         {/* Upload button */}
-        <Button
-          component='label'
-          variant='contained'
-          startIcon={<CloudUploadIcon />}
-        >
-          {file[type] === '' ? 'Upload' : 'Change'} file
-          <VisuallyHiddenInput
-            type='file'
-            accept={filetype}
-            onChange={handleFileChange}
-            onClick={() => {
-              // setFile({ ...file, [type]: '' });
-              setNewUpload(true);
-            }}
-          />
-        </Button>
+        {!fetching && (
+          <Button
+            component='label'
+            variant='contained'
+            startIcon={<CloudUploadIcon />}
+          >
+            {file[type] === '' ? 'Upload' : 'Change'} file
+            <VisuallyHiddenInput
+              type='file'
+              accept={filetype}
+              onChange={handleFileChange}
+              onClick={() => {
+                // setFile({ ...file, [type]: '' });
+                setNewUpload(true);
+              }}
+            />
+          </Button>
+        )}
 
         {/* File name - only show before uploading */}
-        <div className='flex flex-row flex-nowrap my-2 w-full justify-center items-center'>
-          <p>
-            {file[type] && !fetching && newUpload === true && file[type].name}
-          </p>{' '}
-          {file[type] && !fetching && newUpload === true && (
-            <a
-              className='cursor-pointer font-bold text-red-800 py-1 px-2 ml-2'
-              onClick={() => {
-                setFile({ ...file, [type]: '' });
-              }}
-            >
-              X
-            </a>
-          )}
-        </div>
+        {file[type] && !fetching && newUpload === true && (
+          <div className='flex flex-row flex-nowrap my-2 py-2 px-4 gap-2 w-full justify-center items-center border rounded-lg text-sm font-medium bg-white text-slate-900 shadow-sm'>
+            <p>{file[type].name}</p>{' '}
+            {file[type] && !fetching && newUpload === true && (
+              <DeleteForeverIcon
+                className='cursor-pointer text-red-700 hover:text-red-800'
+                onClick={() => {
+                  setFile({ ...file, [type]: '' });
+                }}
+              />
+            )}
+          </div>
+        )}
 
         {/* Upload button - only show when there is a file to be uploaded */}
         {file[type] ? (
