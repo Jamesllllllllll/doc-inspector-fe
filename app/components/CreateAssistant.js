@@ -94,7 +94,7 @@ export default function CreateAssistant() {
             </Button>
           )
         ) : (
-          <Alert severity="info">{`Your assistant ${name} has arrived!`}</Alert>
+          <Alert severity="info">Your assistant <strong>{`${name}`}</strong> has arrived!</Alert>
         )}
       </div>
       {assistant.assistant && (

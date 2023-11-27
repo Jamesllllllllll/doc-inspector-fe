@@ -30,18 +30,13 @@ export default function Tutorial() {
           variants={variants}
           transition={{ duration: 0.5 }}
         >
-          <h1 className='text-4xl font-bold text-center mb-4'>
+          <h2 className='text-4xl font-bold text-center mb-8'>
             Welcome to Doc Inspector!
-          </h1>
+          </h2>
           <p className='text-xl mb-4'>
             Doc Inspector is a tool that allows you to create an AI assistant
-            that can answer questions about a document. The assistant will be
-            able to answer questions and then fill out a template based on the
-            document.
-          </p>
-          <p className='text-xl mb-4'>
-            To get started, you will need to create an assistant, upload a PDF
-            document and a Markdown template.
+            that can answer questions about a document. The assistant can also generate
+            a document for you to download.
           </p>
           <p className='text-xl mb-4'>
             To get started, click the button below to create an assistant.
@@ -56,9 +51,9 @@ export default function Tutorial() {
           variants={variants}
           transition={{ duration: 0.5 }}
         >
-          <h1 className='text-4xl font-bold text-center mb-4'>
+          <h2 className='text-4xl font-bold text-center mb-8'>
             Create a thread
-          </h1>
+          </h2>
           <p className='text-xl mb-4'>
             A thread is a conversation between a human and an assistant. To
             create a thread, click <strong>Create Thread</strong> below.
@@ -73,9 +68,9 @@ export default function Tutorial() {
           variants={variants}
           transition={{ duration: 0.5 }}
         >
-          <h1 className='text-4xl font-bold text-center mb-4'>
+          <h2 className='text-4xl font-bold text-center mb-8'>
             Upload a PDF document
-          </h1>
+          </h2>
           <p className='text-xl mb-4'>
             To upload a PDF document, click <strong>Upload PDF</strong> below.
           </p>
@@ -89,9 +84,9 @@ export default function Tutorial() {
           variants={variants}
           transition={{ duration: 0.5 }}
         >
-          <h1 className='text-4xl font-bold text-center mb-4'>
+          <h2 className='text-4xl font-bold text-center mb-8'>
             Upload a Markdown template
-          </h1>
+          </h2>
           <p className='text-xl mb-4'>
             To upload a Markdown template, click{' '}
             <strong>Upload Markdown</strong> below.
@@ -106,9 +101,9 @@ export default function Tutorial() {
           variants={variants}
           transition={{ duration: 0.5 }}
         >
-          <h1 className='text-4xl font-bold text-center mb-4'>
+          <h2 className='text-4xl font-bold text-center mb-8'>
             Start a conversation
-          </h1>
+          </h2>
           <p className='text-xl mb-4'>
             To start a conversation with your assistant, type a question in the
             box below and click <strong>Send</strong>.
