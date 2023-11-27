@@ -4,6 +4,8 @@ Built for [AI Tinkerer's Generative AI Hackathon](https://hainghiem.notion.site/
 
 **Status:** *Incomplete!* The app does not yet modify the template.
 
+This is the Front-End repo. [The Back-End repo is here](https://github.com/mdwiltfong/doc-inspector).
+
 - Back-end built with **Gadget** - [website](https://gadget.dev) - [GitHub](https://github.com/gadget-inc)
 - Front-end built with **NextJS**
 
