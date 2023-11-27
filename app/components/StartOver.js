@@ -3,10 +3,11 @@ import { useContext } from 'react';
 import { AppContext } from '../contexts/appDetails';
 
 export default function StartOver() {
-  const { setAssistant, setThread, setFile, setUploaded } =
+  const { setAssistant, setThread, setFile, setUploaded, setHideTutorial } =
     useContext(AppContext);
 
   const handleStartOver = () => {
+    setHideTutorial(false);
     setAssistant({});
     setThread({});
     setFile({
