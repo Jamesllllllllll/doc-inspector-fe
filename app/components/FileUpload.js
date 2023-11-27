@@ -1,6 +1,6 @@
 'use client';
 import { useState, useContext } from 'react';
-import { AppContext } from '../contexts/appDetails';
+import { AppContext } from '../context/appDetails';
 import { useAction } from '@gadgetinc/react';
 import { api } from '../../api';
 import { Button, Card } from '@mui/material';

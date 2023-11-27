@@ -6,7 +6,7 @@ import Thread from './components/Thread';
 import PDFdownload from './components/PDFdownload';
 import StartOver from './components/StartOver';
 import { Paper } from '@mui/material';
-import { AppContext } from './contexts/appDetails';
+import { AppContext } from './context/appDetails';
 import { useContext, useEffect } from 'react';
 
 export default function App() {
@@ -15,13 +15,13 @@ export default function App() {
 
   return (
     <>
-      <div class='blurry-filter'>
+      <div className='blurry-filter'>
         <div>Doc Inspector</div>
         {assistant.assistant && <StartOver />}
       </div>
 
-      <div className='flex flex-row justify-center gap-4 w-full'>
-        <div className='flex flex-col items-center mx-2 sm:w-[80%] py-24 gap-12'>
+      <div className={`flex flex-row justify-center gap-4 ${!uploaded.md && 'min-h-screen'} w-full`}>
+        <div className={`flex flex-col items-center mx-2 sm:w-[80%] ${(uploaded.md) ? 'pt-24 pb-12' : 'py-24'} gap-12`}>
           {!hideTutorial && <Tutorial />}
           {uploaded.md && <Thread />}
         </div>

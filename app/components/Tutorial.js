@@ -1,6 +1,6 @@
 'use client';
 import { useContext } from 'react';
-import { AppContext } from '../contexts/appDetails';
+import { AppContext } from '../context/appDetails';
 import { motion } from 'framer-motion';
 import CreateAssistant from './CreateAssistant';
 import FileUpload from './FileUpload';
@@ -15,7 +15,7 @@ export default function Tutorial() {
   const { assistant, thread, file, uploaded } = useContext(AppContext);
   return (
     <motion.div
-      className='flex flex-col items-center sm:w-[80%] md:w-[75%] mx-auto border border-1 border-gray-200 rounded-md p-10 sm:p-14 bg-white gap-8'
+      className={`flex flex-col items-center sm:w-[80%] md:w-[75%] mx-auto ${uploaded.md ? 'min-h-60' : 'h-full'} border border-1 border-gray-200 rounded-md p-10 sm:p-14 bg-white gap-8 shadow-2xl`}
       initial='hidden'
       animate='visible'
       exit='exit'
@@ -112,7 +112,7 @@ export default function Tutorial() {
       )}
       {!thread.thread && <CreateAssistant />}
       {assistant.assistant && thread.thread && !uploaded.md && (
-        <div classname='p-10'>
+        <div className='p-10'>
           {!uploaded.pdf && <FileUpload type='pdf' key='pdf' />}
           {uploaded.pdf && !uploaded.md && <FileUpload type='md' key='md' />}
         </div>

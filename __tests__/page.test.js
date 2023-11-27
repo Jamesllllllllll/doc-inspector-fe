@@ -6,7 +6,7 @@ import Thread from '@/app/components/Thread';
 import Message from '@/app/components/Message';
 import { Provider } from '@gadgetinc/react';
 import { api } from '../api';
-import { ContextProvider } from '@/app/contexts/appDetails';
+import { ContextProvider } from '@/app/context/appDetails';
 import 'openai/shims/node';
 
 describe('App', () => {

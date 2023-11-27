@@ -1,6 +1,6 @@
 import { Button } from '@mui/material';
 import { useContext } from 'react';
-import { AppContext } from '../contexts/appDetails';
+import { AppContext } from '../context/appDetails';
 
 export default function StartOver() {
   const { setAssistant, setThread, setFile, setUploaded, setHideTutorial } =

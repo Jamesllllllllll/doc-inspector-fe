@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { useContext } from 'react';
-import { AppContext } from '../contexts/appDetails';
+import { AppContext } from '../context/appDetails';
 import {
   Document,
   Page,
@@ -63,11 +63,10 @@ const markdownToJSX = (markdown) => {
       );
     }
   });
-
   return jsxContent;
 };
 
-const PDFdownload = () => {
+export default function PDFdownload() {
   const { file } = useContext(AppContext);
   const markdownString = file.template;
   const jsxContent = markdownToJSX(markdownString);
@@ -164,4 +163,3 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PDFdownload;

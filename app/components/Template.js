@@ -2,7 +2,7 @@
 import Markdown from 'react-markdown';
 import { Paper } from '@mui/material';
 import { useContext } from 'react';
-import { AppContext } from '../contexts/appDetails';
+import { AppContext } from '../context/appDetails';
 import './Template.css';
 
 

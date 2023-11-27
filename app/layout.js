@@ -1,7 +1,7 @@
 'use client';
 import { Provider } from '@gadgetinc/react';
 import { api } from '../api';
-import { ContextProvider } from './contexts/appDetails';
+import { ContextProvider } from './context/appDetails';
 import { Inter, Oswald } from 'next/font/google';
 import './globals.css';
 
@@ -16,13 +16,6 @@ export const oswald = Oswald({
   display: 'swap',
   variable: '--font-oswald',
 })
-
-// const inter = Inter({ subsets: ['latin'] });
-
-// export const metadata = {
-//   title: 'Doc Inspector',
-//   description: 'Query documents & generate templated reports',
-// }
 
 export default function RootLayout({ children }) {
   return (

@@ -4,8 +4,8 @@ import { useFetch } from '@gadgetinc/react';
 import { Button, Alert } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 import SaveIcon from '@mui/icons-material/Save';
-import { AppContext } from '../contexts/appDetails';
-import getRandomName from './randomName';
+import { AppContext } from '../context/appDetails';
+import getRandomName from '../utils/randomName';
 export default function CreateAssistant() {
   const { assistant, setAssistant, thread, setThread, file } =
     useContext(AppContext);

@@ -1,7 +1,7 @@
 'use client';
 import { useState, useEffect, useContext, useRef } from 'react';
 import { useFetch } from '@gadgetinc/react';
-import { AppContext } from '../contexts/appDetails';
+import { AppContext } from '../context/appDetails';
 import Message from './Message';
 import { Button } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
@@ -48,6 +48,7 @@ export default function Thread() {
     {
       headers: { 'Content-Type': 'application/json' },
       method: 'GET',
+      sendImmediately: false,
       json: true,
     }
   );
@@ -57,6 +58,7 @@ export default function Thread() {
     {
       headers: { 'Content-Type': 'application/json' },
       method: 'GET',
+      sendImmediately: false,
       json: true,
     }
   );
@@ -150,7 +152,7 @@ export default function Thread() {
       <motion.div
         className={`flex flex-col-reverse overflow-scroll ${
           messages.length !== 0 ? 'h-96' : 'h-48'
-        } sm:w-[80%] md:w-[75%] sm:w-full whitespace-pre-wrap bg-gray-100 rounded-lg p-4 border border-gray-300 w-full`}
+        } sm:w-[80%] md:w-[75%] sm:w-full whitespace-pre-wrap bg-white rounded-lg p-4 border border-gray-300 w-full`}
         layout
       >
         {waiting && <TypingIndicator status={runStatus} />}
