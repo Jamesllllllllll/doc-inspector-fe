@@ -2,6 +2,8 @@
 
 Built for [AI Tinkerer's Generative AI Hackathon](https://hainghiem.notion.site/AI-Tinkerers-first-generative-AI-hackathon-in-Ottawa-6a913ef2bce449a6a4548719dcf9fa07) by [Michael Wiltfong](https://github.com/mdwiltfong) and [James Keezer](https://github.com/Jamesllllllllll)
 
+Deployed to [https://doc-inspector-fe.vercel.app/](https://doc-inspector-fe.vercel.app/)
+
 **Status:** *Incomplete!* The app does not yet modify the template.
 
 This is the Front-End repo. [The Back-End repo is here](https://github.com/mdwiltfong/doc-inspector).
