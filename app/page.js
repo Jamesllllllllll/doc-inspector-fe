@@ -17,7 +17,7 @@ export default function App() {
   return (
     <>
       <div className='blurry-filter'>
-        <div>Doc Inspector -- <a href="/resource.pdf">Sample PDF</a> - <a href="/template.md">Sample MD</a></div>
+        <div>Doc Inspector</div>
         {assistant.assistant && <StartOver />}
       </div>
 
