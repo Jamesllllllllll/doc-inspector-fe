@@ -7,7 +7,8 @@ import PDFdownload from './components/PDFdownload';
 import StartOver from './components/StartOver';
 import { Paper } from '@mui/material';
 import { AppContext } from './context/appDetails';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
+import { LayoutGroup } from "framer-motion"
 
 export default function App() {
   const { file, assistant, thread, uploaded, hideTutorial } =
@@ -16,14 +17,16 @@ export default function App() {
   return (
     <>
       <div className='blurry-filter'>
-        <div>Doc Inspector</div>
+        <div>Doc Inspector -- <a href="/resource.pdf">Sample PDF</a> - <a href="/template.md">Sample MD</a></div>
         {assistant.assistant && <StartOver />}
       </div>
 
       <div className={`flex flex-row justify-center gap-4 ${!uploaded.md && 'min-h-screen'} w-full`}>
         <div className={`flex flex-col items-center mx-2 sm:w-[80%] ${(uploaded.md) ? 'pt-24 pb-12' : 'py-24'} gap-12`}>
-          {!hideTutorial && <Tutorial />}
-          {uploaded.md && <Thread />}
+          <LayoutGroup>
+            {!hideTutorial && <Tutorial />}
+            {uploaded.md && <Thread />}
+          </LayoutGroup>
         </div>
       </div>
       {uploaded.md && (
