@@ -75,83 +75,76 @@ export default function FileUpload({ type }) {
   });
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ delay: 0.5 }}
-      layout
-    >
-      <Card sx={{ padding: 3, backgroundColor: '#FCFCFC', flexGrow: 0 }}>
-        <div className='flex flex-col gap-4 mb-4 p-4 items-center'>
-          <p>Upload a {type === 'pdf' ? 'PDF' : 'Markdown'} file</p>
+    <Card sx={{ padding: 3, backgroundColor: '#FCFCFC', flexGrow: 0 }}>
+      <div className='flex flex-col gap-4 mb-4 p-4 items-center'>
+        <p>Upload a {type === 'pdf' ? 'PDF' : 'Markdown'} file</p>
 
-          {/* Upload button */}
-          {!fetching && (
-            <Button
-              component='label'
-              variant='contained'
-              startIcon={<CloudUploadIcon />}
-            >
-              {file[type] === '' ? 'Upload' : 'Change'} file
-              <VisuallyHiddenInput
-                type='file'
-                accept={filetype}
-                onChange={handleFileChange}
+        {/* Upload button */}
+        {!fetching && (
+          <Button
+            component='label'
+            variant='contained'
+            startIcon={<CloudUploadIcon />}
+          >
+            {file[type] === '' ? 'Upload' : 'Change'} file
+            <VisuallyHiddenInput
+              type='file'
+              accept={filetype}
+              onChange={handleFileChange}
+              onClick={() => {
+                // setFile({ ...file, [type]: '' });
+                setNewUpload(true);
+              }}
+            />
+          </Button>
+        )}
+
+        {/* File name - only show before uploading */}
+        {file[type] && !fetching && newUpload === true && (
+          <div className='flex flex-row flex-nowrap my-2 py-2 px-4 gap-2 w-full justify-center items-center border rounded-lg text-sm font-medium bg-white text-slate-900 shadow-sm'>
+            <p>{file[type].name}</p>{' '}
+            {file[type] && !fetching && newUpload === true && (
+              <DeleteForeverIcon
+                className='cursor-pointer text-red-700 hover:text-red-800'
                 onClick={() => {
-                  // setFile({ ...file, [type]: '' });
-                  setNewUpload(true);
+                  setFile({ ...file, [type]: '' });
                 }}
               />
-            </Button>
-          )}
+            )}
+          </div>
+        )}
 
-          {/* File name - only show before uploading */}
-          {file[type] && !fetching && newUpload === true && (
-            <div className='flex flex-row flex-nowrap my-2 py-2 px-4 gap-2 w-full justify-center items-center border rounded-lg text-sm font-medium bg-white text-slate-900 shadow-sm'>
-              <p>{file[type].name}</p>{' '}
-              {file[type] && !fetching && newUpload === true && (
-                <DeleteForeverIcon
-                  className='cursor-pointer text-red-700 hover:text-red-800'
-                  onClick={() => {
-                    setFile({ ...file, [type]: '' });
-                  }}
-                />
-              )}
-            </div>
-          )}
-
-          {/* Upload button - only show when there is a file to be uploaded */}
-          {file[type] ? (
-            fetching ? (
-              <LoadingButton
-                loading
-                loadingPosition='start'
-                startIcon={<SaveIcon />}
-                variant='outlined'
+        {/* Upload button - only show when there is a file to be uploaded */}
+        {file[type] ? (
+          fetching ? (
+            <LoadingButton
+              loading
+              loadingPosition='start'
+              startIcon={<SaveIcon />}
+              variant='outlined'
+            >
+              Uploading
+            </LoadingButton>
+          ) : (
+            newUpload === true && (
+              <Button
+                component='label'
+                variant='contained'
+                disabled={file[type] === ''}
+                className='bg-green-700 hover:bg-green-800'
+                onClick={handleUploadClick}
               >
-                Uploading
-              </LoadingButton>
-            ) : (
-              newUpload === true && (
-                <Button
-                  component='label'
-                  variant='contained'
-                  disabled={file[type] === ''}
-                  className='bg-green-700 hover:bg-green-800'
-                  onClick={handleUploadClick}
-                >
-                  Upload
-                </Button>
-              )
+                Upload
+              </Button>
             )
-          ) : null}
+          )
+        ) : null}
 
-          {/* Uploaded file name - only show after uploading */}
-          {data && !fetching && newUpload === false && (
-            <p className='my-2 p-4'>Uploaded: {file[type].name}</p>
-          )}
-        </div>
-      </Card>
-    </motion.div>
+        {/* Uploaded file name - only show after uploading */}
+        {data && !fetching && newUpload === false && (
+          <p className='my-2 p-4'>Uploaded: {file[type].name}</p>
+        )}
+      </div>
+    </Card>
   );
 }

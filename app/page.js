@@ -18,7 +18,9 @@ export default function App() {
     <>
       <div className='blurry-filter'>
         <div>Doc Inspector</div>
-        {assistant.assistant && <StartOver />}
+        {assistant.assistant && (
+        <StartOver />
+        )}
       </div>
 
       <div className={`flex flex-row justify-center gap-4 ${!uploaded.md && 'min-h-screen'} w-full`}>
