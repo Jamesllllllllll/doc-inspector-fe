@@ -1,1 +1,0 @@
-Doc Inspector - A project for AI Tinkerer's 2023 Generative AI Hackathon
